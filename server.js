@@ -22,10 +22,10 @@ const upload = multer({storage: storage});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-// app.use(cors({
-//     origin: 'http://185.110.189.42:3005',
-//     credentials: true
-// }));
+app.use(cors({
+    origin: 'http://185.110.189.42:3005',
+    credentials: true
+}));
 
 db.createTables(connection)
 
