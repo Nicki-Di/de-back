@@ -24,7 +24,6 @@ app.use(bodyParser.json());
 
 app.use(cors({
     origin: '*',
-    // credentials: true
 }));
 
 db.createTables(connection)
@@ -33,7 +32,6 @@ db.createTables(connection)
 app.post('/main-form', async (req, res) => {
     let info = req.body;
     db.addMain(connection, info).then(result => {
-        // res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).send(result);
     }).catch(e => {
         console.log(e)
@@ -44,7 +42,6 @@ app.post('/main-form', async (req, res) => {
 app.post('/investor-form', async (req, res) => {
     let info = req.body;
     db.addInvestor(connection, info).then(result => {
-        // res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).send(result);
     }).catch(e => {
         console.log(e)
@@ -56,7 +53,6 @@ app.post('/investor-form', async (req, res) => {
 app.post('/partnership-form', async (req, res) => {
     let info = req.body;
     db.addPartnership(connection, info).then(result => {
-        // res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).send(result);
     }).catch(e => {
         console.log(e)
@@ -71,7 +67,6 @@ app.post('/startup-form', upload.single('doc'), function (req, res) {
     info.path = req.file.path
 
     db.addStartup(connection, info, req.file.path).then(result => {
-        // res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).send(result);
     }).catch(e => {
         console.log(e)
@@ -82,7 +77,6 @@ app.post('/startup-form', upload.single('doc'), function (req, res) {
 app.get('/get-info', async (req, res) => {
     console.log(req.query)
     db.getInfo(connection, req.query.table).then(result => {
-        // res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).send(result);
     }).catch(e => {
         console.log(e)
