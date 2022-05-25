@@ -2,9 +2,9 @@ const initDB = () => {
     const mysql = require('mysql')
     const connection = mysql.createConnection({
         host: 'localhost',
-        user: 'de_admin',
+        user: 'admin_de',
         password: 'YY9grgUUM]6BWud0',
-        database: 'de'
+        database: 'admin_de'
     })
     connection.connect()
     console.log("connection to db established")
