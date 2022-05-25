@@ -2,9 +2,9 @@ const initDB = () => {
     const mysql = require('mysql')
     const connection = mysql.createConnection({
         host: 'localhost',
-        user: 'admin_de',
+        user: 'de_admin',
         password: 'YY9grgUUM]6BWud0',
-        database: 'admin_de'
+        database: 'de'
     })
     connection.connect()
     console.log("connection to db established")
@@ -15,7 +15,7 @@ const createTables = (connection) => {
                         id INT PRIMARY KEY AUTO_INCREMENT,
                         name VARCHAR(255),
                         workArea VARCHAR(255),
-                        phone VARCHAR(11) UNIQUE,
+                        phone CHAR(11) UNIQUE,
                         email VARCHAR(255)
                         );`
 
@@ -24,7 +24,7 @@ const createTables = (connection) => {
                         name VARCHAR(255),
                         business VARCHAR(255),
                         experience VARCHAR(255),
-                        phone VARCHAR(11) UNIQUE
+                        phone CHAR(11) UNIQUE
                         );`
 
     let partnershipForm = `CREATE TABLE IF NOT EXISTS Partnership(
@@ -33,7 +33,7 @@ const createTables = (connection) => {
                         business VARCHAR(255),
                         position VARCHAR(255),
                         kind VARCHAR(255),
-                        phone VARCHAR(11) UNIQUE
+                        phone CHAR(11) UNIQUE
                         );`
 
     let startupForm = `CREATE TABLE IF NOT EXISTS Startup(
@@ -42,7 +42,7 @@ const createTables = (connection) => {
                         startup VARCHAR(255),
                         workArea VARCHAR(255),
                         fileAddress VARCHAR(500),
-                        phone VARCHAR(11) UNIQUE
+                        phone CHAR(11) UNIQUE
                         );`
 
     let tables = [mainForm, investorForm, partnershipForm, startupForm]

@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: 'http://185.110.189.42:3005',
+    origin: 'http://185.110.189.42:300',
     credentials: true
 }));
 
