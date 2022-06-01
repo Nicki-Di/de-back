@@ -41,7 +41,7 @@ const createTables = (connection) => {
                         name VARCHAR(255),
                         startup VARCHAR(255),
                         workArea VARCHAR(255),
-                        fileAddress VARCHAR(500),
+                        fileAddresses VARCHAR(500),
                         phone CHAR(11) UNIQUE
                         );`
 
@@ -93,8 +93,8 @@ const addPartnership = (connection, info) => {
     })
 }
 
-const addStartup = (connection, info, fileAddress) => {
-    let query = `INSERT INTO Startup (name, startup , workArea, fileAddress, phone) VALUES ("${info.name}",  "${info.startup}", "${info.workArea}", "${fileAddress}", "${info.phone}");`
+const addStartup = (connection, info, fileAddresses) => {
+    let query = `INSERT INTO Startup (name, startup , workArea, fileAddresses, phone) VALUES ("${info.name}",  "${info.startup}", "${info.workArea}", "${fileAddresses}", "${info.phone}");`
     return new Promise((resolve, reject) => {
         connection.query(query, (error) => {
             if (error)

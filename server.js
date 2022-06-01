@@ -9,9 +9,16 @@ const multer = require('multer');
 
 const storage = multer.diskStorage(
     {
-        destination: 'public/startupFiles',
+        destination: (req, file, cb) => {
+            const id = req.body.phone + " - " + req.body.name
+            console.log(id)
+
+            const path = `public/startupFiles/${id}`
+            fs.mkdirSync(path, {recursive: true})
+            return cb(null, path)
+        },
         filename: function (req, file, cb) {
-            cb(null, req.body.name + " - " + req.body.phone + " - " + file.originalname)
+            cb(null, file.originalname)
         }
     }
 );
@@ -61,12 +68,14 @@ app.post('/partnership-form', async (req, res) => {
 })
 
 
-// Pro tip: upload.single('doc') and input name = "doc" and formData.append("doc", selectedFile);
-app.post('/startup-form', upload.single('doc'), function (req, res) {
+// Pro tip: upload.single('docs') and input name = "docs" and formData.append("docs", selectedFile);
+app.post('/startup-form', upload.array('docs'), function (req, res) {
     let info = req.body;
-    info.path = req.file.path
-
-    db.addStartup(connection, info, req.file.path).then(result => {
+    let fileAddresses = ''
+    req.files.map(file => {
+        fileAddresses = fileAddresses.concat(file.path, ", ")
+    })
+    db.addStartup(connection, info, fileAddresses).then(result => {
         res.status(200).send(result);
     }).catch(e => {
         console.log(e)
