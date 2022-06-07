@@ -68,7 +68,7 @@ app.post('/partnership-form', async (req, res) => {
 })
 
 
-// Pro tip: upload.single('docs') and input name = "docs" and formData.append("docs", selectedFile);
+// Pro tip: upload.array('docs') and input name = "docs" and formData.append("docs", selectedFile);
 app.post('/startup-form', upload.array('docs'), function (req, res) {
     let info = req.body;
     let fileAddresses = ''
